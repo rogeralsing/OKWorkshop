@@ -5,8 +5,8 @@
     <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Proto.Actor" Version="0.9.1-alpha.0.71" />
-    <PackageReference Include="Proto.Persistence.Sqlite" Version="0.3.0" />
+    <PackageReference Include="Proto.Actor" Version="1.0.0-rc2.39" />
+    <PackageReference Include="Proto.Persistence.Sqlite" Version="1.0.0-rc2.39" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
