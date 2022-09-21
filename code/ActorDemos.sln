@@ -47,6 +47,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".meta", ".meta", "{BDDDD805-E1C8-4CE4-AD92-245DA2CDA9F8}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		..\readme.md = ..\readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part01 - The Basics", "Part01 - The Basics", "{EED9A7BF-FE67-46CA-9783-3377BC437019}"

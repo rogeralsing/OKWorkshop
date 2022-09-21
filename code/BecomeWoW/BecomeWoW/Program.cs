@@ -45,7 +45,7 @@ internal class Player : IActor
 
     public Player()
     {
-        _name      = "Magne the ferocious";
+        _name      = "ProtoMonster";
         _behavior  = new Behavior();
         _hitpoints = _maxHitpoints;
         _behavior.Become(Alive);

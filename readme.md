@@ -35,12 +35,10 @@
 * Receive deadline middleware
 * Tracing middleware
 
-### Persistence
-#### Relational DBs
-* Event sourcing
-* Snapshots
-#### KV Stores
-* Snapshot
+### Patterns
+* Limit Concurrency
+* Naive Throttling
+* Throttling
 
 ### Remoting
 * Set up a remote node
@@ -53,7 +51,14 @@
 * Cluster providers
 * Identity lookups
 * Members vs Clients
-* Cluster Kinds            
+* Cluster Kinds   
+
+### Persistence
+#### Relational DBs
+* Event sourcing
+* Snapshots
+#### KV Stores
+* Snapshot
 
 ## Day 2
 
