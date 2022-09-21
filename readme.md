@@ -4,6 +4,7 @@
 
 ### Presentation
 * Proto.Actor presentation
+* https://realtimemap.skyrise.cloud/
 
 ### Create your first actor
 * Props, PIDs - https://proto.actor/docs/props/ https://proto.actor/docs/pid/
@@ -59,16 +60,4 @@
 * Snapshots
 #### KV Stores
 * Snapshot
-
-## Day 2
-
-### Mixing local and cluster actors
-* Demo realtime map
-* Show how local resources can be wrapped in local actors
-* Show how local actors on a separate layer can keep connections alive
-
-### Typed cluster actors
-* Show how to use Typed/Code generated actors
-
-### Proof of Concept development and brainstorming
 
