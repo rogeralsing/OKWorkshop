@@ -1,15 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7</TargetFramework>
     <ServerGarbageCollection>true</ServerGarbageCollection>
     <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
     <LangVersion>10</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Proto.Cluster.Consul\Proto.Cluster.Consul.csproj" />
-    <ProjectReference Include="..\..\..\src\Proto.Cluster\Proto.Cluster.csproj" />
-    <ProjectReference Include="..\..\..\src\Proto.Remote\Proto.Remote.csproj" />
+
     <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39" />
+    <PackageReference Include="Proto.Cluster.Consul" Version="1.0.0-rc2.39" />
   </ItemGroup>
 </Project>

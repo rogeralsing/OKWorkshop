@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.21.1" />
-    <PackageReference Include="Grpc.Tools" Version="2.46.3" PrivateAssets="All" />
-    <PackageReference Include="Proto.Cluster.CodeGen" Version="0.30.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.21.6" />
+    <PackageReference Include="Grpc.Tools" Version="2.49.0-pre3" PrivateAssets="All" />
+    <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39" />
+    <PackageReference Include="Proto.Cluster.CodeGen" Version="1.0.0-rc2.39" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos.proto" />
@@ -14,8 +15,6 @@
   <ItemGroup>
     <ProtoGrain Include="Protos.proto" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Proto.Cluster\Proto.Cluster.csproj" />
-  </ItemGroup>
+
 
 </Project>

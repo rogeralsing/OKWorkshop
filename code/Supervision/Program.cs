@@ -19,7 +19,7 @@ class Program
 
         var props = Props
             .FromProducer(() => new ParentActor())
-            .WithChildSupervisorStrategy(new OneForOneStrategy(Decider.Decide, 1, null));
+            .WithChildSupervisorStrategy( new OneForOneStrategy(Decider.Decide, 1, null));
 
         var actor = context.Spawn(props);
 
