@@ -30,10 +30,7 @@ namespace RouterExample
     {
         public Task ReceiveAsync(IContext context)
         {
-            if (context.Message is Message msg)
-            {
-                Console.WriteLine($"Actor {context.Self.Id} got message '{msg.Text}'.");
-            }
+            if (context.Message is Message msg) Console.WriteLine($"Actor {context.Self.Id} got message '{msg.Text}'.");
             return Task.CompletedTask;
         }
     }
@@ -46,16 +43,12 @@ namespace RouterExample
         {
             TestBroadcastPool();
             TestBroadcastGroup();
-
             TestRandomPool();
             TestRandomGroup();
-
             TestRoundRobinPool();
             TestRoundRobinGroup();
-
             TestConsistentHashPool();
             TestConsistentHashGroup();
-
             Console.ReadLine();
         }
 
@@ -63,12 +56,7 @@ namespace RouterExample
         {
             var system = new ActorSystem();
             var context = new RootContext(system);
-            var props = context.NewBroadcastGroup(
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps)
-            );
+            var props = context.NewBroadcastGroup(context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps));
             for (var i = 0; i < 10; i++)
             {
                 var pid = context.Spawn(props);
@@ -82,27 +70,16 @@ namespace RouterExample
             var context = new RootContext(system);
             var props = context.NewBroadcastPool(MyActorProps, 5);
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestConsistentHashGroup()
         {
             var system = new ActorSystem();
             var context = new RootContext(system);
-            var props = context.NewConsistentHashGroup(
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps)
-            );
+            var props = context.NewConsistentHashGroup(context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps));
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestConsistentHashPool()
@@ -111,27 +88,16 @@ namespace RouterExample
             var context = new RootContext(system);
             var props = context.NewConsistentHashPool(MyActorProps, 5);
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestRoundRobinGroup()
         {
             var system = new ActorSystem();
             var context = new RootContext(system);
-            var props = context.NewRoundRobinGroup(
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps)
-            );
+            var props = context.NewRoundRobinGroup(context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps));
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestRoundRobinPool()
@@ -140,27 +106,16 @@ namespace RouterExample
             var context = new RootContext(system);
             var props = context.NewRoundRobinPool(MyActorProps, 5);
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestRandomGroup()
         {
             var system = new ActorSystem();
             var context = new RootContext(system);
-            var props = context.NewRandomGroup(
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps),
-                context.Spawn(MyActorProps)
-            );
+            var props = context.NewRandomGroup(context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps), context.Spawn(MyActorProps));
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
 
         private static void TestRandomPool()
@@ -169,10 +124,7 @@ namespace RouterExample
             var context = new RootContext(system);
             var props = context.NewRandomPool(MyActorProps, 5);
             var pid = context.Spawn(props);
-            for (var i = 0; i < 10; i++)
-            {
-                context.Send(pid, new Message { Text = $"{i % 4}" });
-            }
+            for (var i = 0; i < 10; i++) context.Send(pid, new Message { Text = $"{i % 4}" });
         }
     }
 }

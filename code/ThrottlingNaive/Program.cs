@@ -20,18 +20,14 @@ namespace ThrottlingNaive
         }
     }
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var system = new ActorSystem();
             var props = Props.FromProducer(() => new ThrottledActor());
             var pid = system.Root.Spawn(props);
-
-            for (int i = 0; i < 100; i++)
-            {
-                system.Root.Send(pid, $"Hello {i}");
-            }
+            for (var i = 0; i < 100; i++) system.Root.Send(pid, $"Hello {i}");
             Console.ReadLine();
         }
     }

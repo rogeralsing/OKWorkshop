@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Proto;
-using Proto.Router;
 
 namespace FanOutQuickestReply
 {
@@ -48,26 +46,22 @@ namespace FanOutQuickestReply
                         var t = context.RequestAsync<string>(w, work);
                         tasks.Add(t);
                     }
-                    
-                    var res = await Task.WhenAny(tasks).Unwrap();
-                    
-                    context.Respond(res);
 
+                    var res = await Task.WhenAny(tasks).Unwrap();
+                    context.Respond(res);
                     break;
                 }
             }
         }
     }
 
-    class Program
+    internal class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var system = new ActorSystem();
             var context = system.Root;
-            
             var workerProps = Props.FromProducer(() => new WorkerActor());
-
             var workers = new List<PID>();
             for (var i = 0; i < 10; i++)
             {
@@ -77,7 +71,6 @@ namespace FanOutQuickestReply
 
             var fanOutProps = Props.FromProducer(() => new FanOutActor(workers));
             var fanOutPid = context.Spawn(fanOutProps);
-
             for (var i = 0; i < 10; i++)
             {
                 var result = await context.RequestAsync<string>(fanOutPid, new DoWork("somework"));

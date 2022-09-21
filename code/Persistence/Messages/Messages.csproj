@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.21.6" />
-    <PackageReference Include="Grpc.Tools" Version="2.49.0-pre3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Proto.Actor" Version="1.0.0-rc2.39" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Protobuf Include="Protos.proto" GrpcServices="Server,Client" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>9</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.21.6"/>
+        <PackageReference Include="Grpc.Tools" Version="2.49.0-pre3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Proto.Actor" Version="1.0.0-rc2.39"/>
+        <PackageReference Include="System.ValueTuple" Version="4.5.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="Protos.proto" GrpcServices="Server,Client"/>
+    </ItemGroup>
 </Project>

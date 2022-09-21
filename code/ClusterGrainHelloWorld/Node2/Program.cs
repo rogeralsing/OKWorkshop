@@ -3,6 +3,7 @@
 //      Copyright (C) 2015-2022 Asynkron AB All rights reserved
 // </copyright>
 // -----------------------------------------------------------------------
+
 using System;
 using System.Threading.Tasks;
 using ClusterHelloWorld.Messages;
@@ -11,7 +12,6 @@ using Proto;
 using Proto.Cluster;
 using Proto.Cluster.Consul;
 using Proto.Cluster.Partition;
-using Proto.Cluster.Seed;
 using Proto.Remote;
 using Proto.Remote.GrpcNet;
 using static System.Threading.Tasks.Task;
@@ -23,7 +23,10 @@ public class HelloGrain : HelloGrainBase
 {
     private readonly string _identity;
 
-    public HelloGrain(IContext ctx, string identity) : base(ctx) => _identity = identity;
+    public HelloGrain(IContext ctx, string identity) : base(ctx)
+    {
+        _identity = identity;
+    }
 
     public override Task<HelloResponse> SayHello(HelloRequest request)
     {
@@ -32,47 +35,27 @@ public class HelloGrain : HelloGrainBase
         {
             Message = $"Hello from typed grain {_identity}"
         };
-
         return FromResult(res);
     }
 }
 
-class Program
+internal class Program
 {
     private static async Task Main()
     {
-        Proto.Log.SetLoggerFactory(
-            LoggerFactory.Create(l => l.AddConsole().SetMinimumLevel(LogLevel.Information)));
-            
+        Log.SetLoggerFactory(LoggerFactory.Create(l => l.AddConsole().SetMinimumLevel(LogLevel.Information)));
+
         // Required to allow unencrypted GrpcNet connections
         AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-        var system = new ActorSystem(new ActorSystemConfig().WithDeveloperSupervisionLogging(true))
-            .WithRemote(GrpcNetRemoteConfig.BindToLocalhost(8090).WithProtoMessages(ProtosReflection.Descriptor))
-            .WithCluster(ClusterConfig
-                .Setup("MyCluster", new ConsulProvider(new ConsulProviderConfig()), new PartitionIdentityLookup())
-                .WithClusterKind(HelloGrainActor.GetClusterKind((ctx, identity) => new HelloGrain(ctx, identity.Identity)))
-            );
-            
-        system.EventStream.Subscribe<ClusterTopology>(e => {
-                Console.WriteLine($"{DateTime.Now:O} My members {e.TopologyHash}");
-            }
-        );
-
-        await system
-            .Cluster()
-            .StartMemberAsync();
-
+        var system = new ActorSystem(new ActorSystemConfig().WithDeveloperSupervisionLogging(true)).WithRemote(GrpcNetRemoteConfig.BindToLocalhost(8090).WithProtoMessages(ProtosReflection.Descriptor)).WithCluster(ClusterConfig.Setup("MyCluster", new ConsulProvider(new ConsulProviderConfig()), new PartitionIdentityLookup()).WithClusterKind(HelloGrainActor.GetClusterKind((ctx, identity) => new HelloGrain(ctx, identity.Identity))));
+        system.EventStream.Subscribe<ClusterTopology>(e => { Console.WriteLine($"{DateTime.Now:O} My members {e.TopologyHash}"); });
+        await system.Cluster().StartMemberAsync();
         Console.WriteLine("Started...");
-
-        Console.CancelKeyPress += async (e, y) => {
+        Console.CancelKeyPress += async (e, y) =>
+        {
             Console.WriteLine("Shutting Down...");
-            await system
-                .Cluster()
-                .ShutdownAsync();
+            await system.Cluster().ShutdownAsync();
         };
-
-
-            
         await Delay(-1);
     }
 }

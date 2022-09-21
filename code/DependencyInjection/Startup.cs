@@ -3,6 +3,7 @@
 //      Copyright (C) 2015-2022 Asynkron AB All rights reserved
 // </copyright>
 // -----------------------------------------------------------------------
+
 using DependencyInjection.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +18,10 @@ namespace DependencyInjection;
 
 public class Startup
 {
-    public Startup(IConfiguration configuration) => Configuration = configuration;
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
 
     public IConfiguration Configuration { get; }
 
@@ -27,8 +31,7 @@ public class Startup
         services.AddSingleton(serviceProvider => new ActorSystem().WithServiceProvider(serviceProvider));
         services.AddTransient<DependencyInjectedActor>();
         services.AddControllers();
-        services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "DependencyInjection", Version = "v1"}); }
-        );
+        services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "DependencyInjection", Version = "v1" }); });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,11 +45,8 @@ public class Startup
         }
 
         app.UseHttpsRedirection();
-
         app.UseRouting();
-
         app.UseAuthorization();
-
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

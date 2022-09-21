@@ -9,17 +9,19 @@ var pid = context.Spawn(props);
 context.Send(pid, new HelloMessage("Abax"));
 Console.ReadLine();
 
-record HelloMessage(string Name);
+internal record HelloMessage(string Name);
 
-class HelloActor : IActor
+internal class HelloActor : IActor
 {
-    public Task ReceiveAsync(IContext context) =>
-        context.Message switch
+    public Task ReceiveAsync(IContext context)
+    {
+        return context.Message switch
         {
             Started          => OnStarted(),
             HelloMessage msg => OnHelloMessage(msg),
             _                => Task.CompletedTask
         };
+    }
 
     private Task OnStarted()
     {
