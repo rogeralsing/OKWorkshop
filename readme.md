@@ -31,7 +31,7 @@
 * Receiver middleware
 * Sender middleware
 * Mailbox middleware
-* Context decorator
+* Context decorator https://proto.actor/docs/context-decorator/
 * Logger middleware
 * Receive deadline middleware
 * Tracing middleware
