@@ -49,8 +49,8 @@
 
 ### Cluster
 * Set up a cluster
-* Cluster providers
-* Identity lookups
+* Cluster providers https://proto.actor/docs/cluster/cluster-providers-net/
+* Identity lookups https://proto.actor/docs/cluster/identity-lookup-net/
 * Members vs Clients
 * Cluster Kinds   
 
