@@ -10,15 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="483e5206-2ee0-40df-81d5-1011ffc3f51a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Inmem.WebSocketGateway/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OK.CentralSystem/OK.CentralSystem.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OK.OcppServer/OK.OcppServer.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OK.OcppServer/OK.OcppServer.csproj.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../code/ClusterGrainHelloWorld/Messages/Protos.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../code/ClusterGrainHelloWorld/Messages/Protos.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../code/ClusterGrainHelloWorld/Node2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../code/ClusterGrainHelloWorld/Node2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../code/HelloWorld/HelloWorld/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../code/HelloWorld/HelloWorld/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="483e5206-2ee0-40df-81d5-1011ffc3f51a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,8 +113,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663961160756</updated>
-      <workItem from="1663961172027" duration="327000" />
+      <workItem from="1663961172027" duration="631000" />
     </task>
+    <task id="LOCAL−00001" summary="Cluster Example with Ocpp">
+      <created>1663961591196</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1663961591196</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,5 +142,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Cluster Example with Ocpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cluster Example with Ocpp" />
   </component>
 </project>

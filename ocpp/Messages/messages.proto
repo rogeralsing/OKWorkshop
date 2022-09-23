@@ -1,0 +1,24 @@
+syntax = "proto3";
+package messages;
+option csharp_namespace = "OK.Messages";
+import "protoactor/Protos.proto";
+import "google/protobuf/empty.proto";
+
+message Online{
+  actor.PID LocalPid = 1;
+}
+message Offline{}
+
+//
+message FromChargepoint {
+  string Payload = 1;
+}
+
+message ToChargepoint {
+  string Payload = 1;
+}
+
+service ChargePoint {
+  rpc HandleOnline(Online) returns (google.protobuf.Empty) {}
+  rpc HandleFromChargePoint(FromChargepoint) returns (google.protobuf.Empty) {}
+}
