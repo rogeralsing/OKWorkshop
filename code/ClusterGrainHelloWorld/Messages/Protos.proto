@@ -11,4 +11,5 @@ message HelloResponse {
 
 service HelloGrain {
 	rpc SayHello(HelloRequest) returns (HelloResponse) {}
+  
 }

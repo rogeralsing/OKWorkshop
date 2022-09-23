@@ -6,7 +6,7 @@ var system = new ActorSystem();
 var context = system.Root;
 var props = Props.FromProducer(() => new HelloActor());
 var pid = context.Spawn(props);
-context.Send(pid, new HelloMessage("Abax"));
+context.Send(pid, new HelloMessage("OK"));
 Console.ReadLine();
 
 internal record HelloMessage(string Name);

@@ -22,7 +22,7 @@ namespace Node2;
 public class HelloGrain : HelloGrainBase
 {
     private readonly string _identity;
-
+    
     public HelloGrain(IContext ctx, string identity) : base(ctx)
     {
         _identity = identity;
