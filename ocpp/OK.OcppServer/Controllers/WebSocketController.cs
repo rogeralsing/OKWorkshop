@@ -13,7 +13,8 @@ public class WebSocketController : ControllerBase
     private readonly WebSocketConnectionManager _ocppConnectionManager;
     private readonly ActorSystem _system;
 
-    public WebSocketController(WebSocketConnectionManager ocppConnectionManager, ILogger<WebSocketController> logger, ActorSystem system)
+    public WebSocketController(WebSocketConnectionManager ocppConnectionManager, ILogger<WebSocketController> logger,
+        ActorSystem system)
     {
         _ocppConnectionManager = ocppConnectionManager;
         _logger = logger;

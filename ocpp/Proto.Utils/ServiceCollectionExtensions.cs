@@ -11,7 +11,11 @@ namespace Proto.Utils;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddProtoCluster(this IServiceCollection self, string clusterName, string bindToHost = "localhost", int port = 0, Func<ActorSystemConfig, ActorSystemConfig>? systemConfigFactory = null, Func<GrpcNetRemoteConfig, GrpcNetRemoteConfig>? remoteConfigFactory = null, Func<ClusterConfig, ClusterConfig>? clusterConfigFactory = null, IClusterProvider? clusterProvider = null)
+    public static IServiceCollection AddProtoCluster(this IServiceCollection self, string clusterName,
+        string bindToHost = "localhost", int port = 0,
+        Func<ActorSystemConfig, ActorSystemConfig>? systemConfigFactory = null,
+        Func<GrpcNetRemoteConfig, GrpcNetRemoteConfig>? remoteConfigFactory = null,
+        Func<ClusterConfig, ClusterConfig>? clusterConfigFactory = null, IClusterProvider? clusterProvider = null)
     {
         self.AddSingleton(p =>
         {
