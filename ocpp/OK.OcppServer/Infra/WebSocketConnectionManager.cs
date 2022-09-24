@@ -9,11 +9,14 @@ public class WebSocketConnectionManager
     public void Add(OcppConnection connection)
     {
         OcppConnection? old = null;
+
         _connections.AddOrUpdate(connection.Id, connection, (_, o) =>
         {
             old = o;
+
             return connection;
         });
+
         if (old != null)
         {
             OnRemove(old);

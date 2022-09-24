@@ -37,6 +37,7 @@ public class OcppController : ControllerBase
         using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync(subProtocol);
         var connection = new OcppConnection(connectionId, webSocket, _system);
         _ocppConnectionManager.Add(connection);
+
         try
         {
             await connection.Process();

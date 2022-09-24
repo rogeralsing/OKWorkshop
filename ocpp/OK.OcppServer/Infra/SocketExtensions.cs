@@ -10,6 +10,7 @@ public static class SocketExtensions
         var buffer = new byte[1000];
         using var ms = new MemoryStream();
         WebSocketReceiveResult result;
+
         do
         {
             ct.ThrowIfCancellationRequested();
@@ -18,12 +19,14 @@ public static class SocketExtensions
         } while (!result.EndOfMessage);
 
         ms.Seek(0, SeekOrigin.Begin);
+
         if (result.MessageType != WebSocketMessageType.Text || result.Count.Equals(0))
         {
             throw new Exception("Unexpected message");
         }
 
         using var reader = new StreamReader(ms, Encoding.UTF8);
+
         return await reader.ReadToEndAsync();
     }
 
@@ -31,6 +34,7 @@ public static class SocketExtensions
     public static Task SendStringAsync(this WebSocket socket, string data, CancellationToken ct = default)
     {
         var segment = new ArraySegment<byte>(Encoding.UTF8.GetBytes(data));
+
         return socket.SendAsync(segment, WebSocketMessageType.Text, true, ct);
     }
 }

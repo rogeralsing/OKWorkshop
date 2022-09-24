@@ -24,6 +24,7 @@ public class OcppConnection
     {
         var props = Props.FromProducer(() => new LocalOcppActor(Id, this));
         var pid = _system.Root.Spawn(props);
+
         //spawn actor for this ID
         try
         {
@@ -48,6 +49,7 @@ public class OcppConnection
         {
             Payload = msg
         });
+
         return Task.CompletedTask;
     }
 

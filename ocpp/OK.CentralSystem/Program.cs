@@ -9,10 +9,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var chargePoint = ChargePointActor.GetClusterKind((ctx, _) => new ChargepointActor(ctx));
+
 builder.Services.AddProtoCluster("MyCluster", port: 8090,
-    remoteConfigFactory: r => r.WithProtoMessages(MessagesReflection.Descriptor),
-    clusterConfigFactory: c => c.WithClusterKind(chargePoint));
+    configureRemote: r => r.WithProtoMessages(MessagesReflection.Descriptor),
+    configureCluster: c => c.WithClusterKind(chargePoint));
+
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
