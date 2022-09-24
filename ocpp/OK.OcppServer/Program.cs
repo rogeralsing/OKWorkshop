@@ -16,7 +16,7 @@ builder.Services.AddWebSockets(x =>
 var system = new ActorSystem(new ActorSystemConfig()
         .WithDeveloperSupervisionLogging(true))
     .WithRemote(GrpcNetRemoteConfig.BindToLocalhost().WithProtoMessages(MessagesReflection.Descriptor))
-    .WithCluster(ClusterConfig.Setup("MyCluster", new SeedNodeClusterProvider(new SeedNodeClusterProviderOptions(("127.0.0.1",8090))), new PartitionIdentityLookup()));
+    .WithCluster(ClusterConfig.Setup("MyCluster", new SeedNodeClusterProvider(new SeedNodeClusterProviderOptions(("localhost",8090))), new PartitionIdentityLookup()));
 
 builder.Services.AddSingleton(system);
 builder.Services.AddLogging();

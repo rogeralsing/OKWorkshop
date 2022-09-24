@@ -113,7 +113,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663961160756</updated>
-      <workItem from="1663961172027" duration="631000" />
+      <workItem from="1663961172027" duration="1115000" />
     </task>
     <task id="LOCAL−00001" summary="Cluster Example with Ocpp">
       <created>1663961591196</created>
@@ -121,7 +121,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1663961591196</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="use google protobuf empty for actors">
+      <created>1663961832740</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1663961832740</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +149,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Cluster Example with Ocpp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cluster Example with Ocpp" />
+    <MESSAGE value="use google protobuf empty for actors" />
+    <option name="LAST_COMMIT_MESSAGE" value="use google protobuf empty for actors" />
   </component>
 </project>
