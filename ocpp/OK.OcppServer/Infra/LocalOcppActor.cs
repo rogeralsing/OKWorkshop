@@ -6,12 +6,12 @@ namespace OK.OcppServer.Infra;
 
 public class LocalOcppActor : IActor
 {
-    private readonly WebSocketConnection _con;
+    private readonly OcppConnection _con;
     private readonly string _id;
 
-    public LocalOcppActor(string id, WebSocketConnection con)
+    public LocalOcppActor(string id, OcppConnection con)
     {
-        _id  = id;
+        _id = id;
         _con = con;
     }
 
@@ -24,7 +24,7 @@ public class LocalOcppActor : IActor
         }
         else if (context.Message is ToChargepoint toChargepoint)
         {
-            await WebSocketConnection.SendStringAsync(_con, toChargepoint.Payload, CancellationToken.None);
+            await _con.SendStringAsync(toChargepoint.Payload, CancellationToken.None);
         }
     }
 }

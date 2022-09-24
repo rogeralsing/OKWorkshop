@@ -4,26 +4,32 @@ namespace OK.OcppServer.Infra;
 
 public class WebSocketConnectionManager
 {
-    private readonly ConcurrentDictionary<string, WebSocketConnection?> _connections = new();
+    private readonly ConcurrentDictionary<string, OcppConnection?> _connections = new();
 
-    public void Add(WebSocketConnection connection)
+    public void Add(OcppConnection connection)
     {
-        WebSocketConnection? old = null;
+        OcppConnection? old = null;
         _connections.AddOrUpdate(connection.Id, connection, (_, o) =>
         {
             old = o;
             return connection;
         });
-        if (old != null) OnRemove(old);
+        if (old != null)
+        {
+            OnRemove(old);
+        }
     }
 
-    public void Remove(WebSocketConnection connection)
+    public void Remove(OcppConnection connection)
     {
         // only remove if both Id and the connection instance match. otherwise this connection has already been replaced
-        if (_connections.TryRemove(new KeyValuePair<string, WebSocketConnection>(connection.Id, connection)!)) OnRemove(connection);
+        if (_connections.TryRemove(new KeyValuePair<string, OcppConnection>(connection.Id, connection)!))
+        {
+            OnRemove(connection);
+        }
     }
 
-    private void OnRemove(WebSocketConnection? connection)
+    private void OnRemove(OcppConnection? connection)
     {
     }
 }

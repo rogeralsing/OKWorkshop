@@ -20,7 +20,7 @@ public static class ServiceCollectionExtensions
             var s = new ActorSystemConfig();
             s = systemConfigFactory?.Invoke(s) ?? s;
             var r = GrpcNetRemoteConfig.BindTo(bindToHost, port);
-            r               =   remoteConfigFactory?.Invoke(r) ?? r;
+            r = remoteConfigFactory?.Invoke(r) ?? r;
             clusterProvider ??= new SeedNodeClusterProvider();
             var c = ClusterConfig.Setup(clusterName, clusterProvider, new PartitionIdentityLookup());
             c = clusterConfigFactory?.Invoke(c) ?? c;

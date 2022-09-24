@@ -10,28 +10,32 @@ namespace OK.OcppServer.Controllers;
 public class WebSocketController : ControllerBase
 {
     private readonly ILogger<WebSocketController> _logger;
+    private readonly WebSocketConnectionManager _ocppConnectionManager;
     private readonly ActorSystem _system;
-    private readonly WebSocketConnectionManager _webSocketConnectionManager;
 
-    public WebSocketController(WebSocketConnectionManager webSocketConnectionManager, ILogger<WebSocketController> logger, ActorSystem system)
+    public WebSocketController(WebSocketConnectionManager ocppConnectionManager, ILogger<WebSocketController> logger, ActorSystem system)
     {
-        _webSocketConnectionManager = webSocketConnectionManager;
-        _logger                     = logger;
-        _system                     = system;
+        _ocppConnectionManager = ocppConnectionManager;
+        _logger = logger;
+        _system = system;
     }
 
     [HttpGet("/api/v1/ws/{connectionId}")]
     public async Task<IActionResult> GetAsync(string connectionId)
     {
-        if (!HttpContext.WebSockets.IsWebSocketRequest) return StatusCode(400);
+        if (!HttpContext.WebSockets.IsWebSocketRequest)
+        {
+            return StatusCode(400);
+        }
+
         Request.Headers.TryGetValue("Authorization", out var authorization);
         Request.Headers.TryGetValue("Sec-WebSocket-Protocol", out var subProtocol);
 
         //TODO: how to handle auth?
         //TODO: how to handle subProtocol?
         using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync(subProtocol);
-        var connection = new WebSocketConnection(connectionId, webSocket, _system);
-        _webSocketConnectionManager.Add(connection);
+        var connection = new OcppConnection(connectionId, webSocket, _system);
+        _ocppConnectionManager.Add(connection);
         try
         {
             await connection.Process();
@@ -48,7 +52,7 @@ public class WebSocketController : ControllerBase
         }
         finally
         {
-            _webSocketConnectionManager.Remove(connection);
+            _ocppConnectionManager.Remove(connection);
         }
 
         return new EmptyResult();
