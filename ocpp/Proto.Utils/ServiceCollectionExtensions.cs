@@ -21,17 +21,17 @@ public static class ServiceCollectionExtensions
         {
             var loggerFactory = p.GetRequiredService<ILoggerFactory>();
             Log.SetLoggerFactory(loggerFactory);
-            
+
             var s = new ActorSystemConfig();
             s = configureSystem?.Invoke(s) ?? s;
-            
+
             var r = GrpcNetRemoteConfig.BindTo(bindToHost, port);
             r = configureRemote?.Invoke(r) ?? r;
             clusterProvider ??= new SeedNodeClusterProvider();
-            
+
             var c = ClusterConfig.Setup(clusterName, clusterProvider, new PartitionIdentityLookup());
             c = configureCluster?.Invoke(c) ?? c;
-            
+
             var system = new ActorSystem(s).WithRemote(r).WithCluster(c).WithServiceProvider(p);
 
             return system;
@@ -40,7 +40,7 @@ public static class ServiceCollectionExtensions
         self.AddSingleton(p => p.GetRequiredService<ActorSystem>().Cluster());
         self.AddSingleton(p => p.GetRequiredService<ActorSystem>().Root);
         self.AddHostedService<ProtoActorLifecycleHost>();
-        self.AddHealthChecks().AddCheck<ActorSystemHealthCheck>("proto");
+        self.AddHealthChecks().AddCheck<ActorSystemHealthCheck>("proto", null, new[] { "ready", "live" });
 
         return self;
     }

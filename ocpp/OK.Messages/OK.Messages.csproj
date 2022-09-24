@@ -4,23 +4,24 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Messages</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.21.6"/>
+        <PackageReference Include="Google.Protobuf" Version="3.21.6" />
         <PackageReference Include="Grpc.Tools" Version="2.49.0-pre3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39"/>
-        <PackageReference Include="Proto.Cluster.CodeGen" Version="1.0.0-rc2.39"/>
+        <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39" />
+        <PackageReference Include="Proto.Cluster.CodeGen" Version="1.0.0-rc2.39" />
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf Include="messages.proto"/>
+        <Protobuf Include="messages.proto" />
     </ItemGroup>
     <ItemGroup>
-        <ProtoGrain Include="messages.proto"/>
+        <ProtoGrain Include="messages.proto" />
     </ItemGroup>
 
 </Project>

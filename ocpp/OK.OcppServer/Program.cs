@@ -10,7 +10,8 @@ builder.Services.AddWebSockets(_ => { });
 var clusterProvider = new SeedNodeClusterProvider(new SeedNodeClusterProviderOptions(("localhost", 8090)));
 
 builder.Services.AddProtoCluster("MyCluster",
-    configureRemote: r => r.WithProtoMessages(MessagesReflection.Descriptor), clusterProvider: clusterProvider);
+    configureRemote: r => r.WithProtoMessages(MessagesReflection.Descriptor), 
+    clusterProvider: clusterProvider);
 
 builder.Services.AddLogging();
 builder.Services.AddSingleton<WebSocketConnectionManager>();

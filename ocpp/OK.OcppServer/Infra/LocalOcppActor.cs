@@ -17,14 +17,14 @@ public class LocalOcppActor : IActor
 
     public async Task ReceiveAsync(IContext context)
     {
-        if (context.Message is FromChargepoint fromChargepoint)
+        if (context.Message is FromChargepoint fromChargePoint)
         {
             var client = context.Cluster().GetChargePoint(_id);
-            await client.HandleFromChargePoint(fromChargepoint, CancellationToken.None);
+            await client.HandleFromChargePoint(fromChargePoint, CancellationToken.None);
         }
-        else if (context.Message is ToChargepoint toChargepoint)
+        else if (context.Message is ToChargepoint toChargePoint)
         {
-            await _con.SendStringAsync(toChargepoint.Payload, CancellationToken.None);
+            await _con.SendStringAsync(toChargePoint.Payload, CancellationToken.None);
         }
     }
 }

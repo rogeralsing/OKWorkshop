@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.OcppServer", "OK.OcppSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.CentralSystem", "OK.CentralSystem\OK.CentralSystem.csproj", "{47B74C20-7C95-4357-A56E-A35CF9520AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{A0AE57A0-5AEC-4CAA-96F7-891E7B051645}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Messages", "OK.Messages\OK.Messages.csproj", "{A0AE57A0-5AEC-4CAA-96F7-891E7B051645}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proto.Utils", "Proto.Utils\Proto.Utils.csproj", "{D688E3C8-2C7A-4438-BD5E-AC32FF4B69AF}"
 EndProject
