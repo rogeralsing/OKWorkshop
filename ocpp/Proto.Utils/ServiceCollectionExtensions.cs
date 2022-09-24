@@ -5,7 +5,6 @@ using Proto.Cluster.Partition;
 using Proto.Cluster.Seed;
 using Proto.DependencyInjection;
 using Proto.Remote.GrpcNet;
-using Proto.Remote.Healthchecks;
 
 namespace Proto.Utils;
 
@@ -40,7 +39,6 @@ public static class ServiceCollectionExtensions
         self.AddSingleton(p => p.GetRequiredService<ActorSystem>().Cluster());
         self.AddSingleton(p => p.GetRequiredService<ActorSystem>().Root);
         self.AddHostedService<ProtoActorLifecycleHost>();
-        self.AddHealthChecks().AddCheck<ActorSystemHealthCheck>("proto", null, new[] { "ready", "live" });
 
         return self;
     }
