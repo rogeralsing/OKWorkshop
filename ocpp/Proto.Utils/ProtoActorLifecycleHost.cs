@@ -1,12 +1,12 @@
-using Proto.Cluster;
+using Microsoft.Extensions.Hosting;
 
-namespace OK.CentralSystem;
+namespace Proto.Utils;
 
 public class ProtoActorLifecycleHost : IHostedService
 {
-    private readonly Cluster _cluster;
+    private readonly Cluster.Cluster _cluster;
 
-    public ProtoActorLifecycleHost(Cluster cluster)
+    public ProtoActorLifecycleHost(Cluster.Cluster cluster)
     {
         _cluster = cluster;
     }

@@ -9,29 +9,21 @@ public class WebSocketConnectionManager
     public void Add(WebSocketConnection connection)
     {
         WebSocketConnection? old = null;
-        _connections.AddOrUpdate(connection.Id, connection, (_,o) =>
+        _connections.AddOrUpdate(connection.Id, connection, (_, o) =>
         {
             old = o;
             return connection;
         });
-
-        if (old != null)
-        {
-            OnRemove(old);
-        }
+        if (old != null) OnRemove(old);
     }
 
     public void Remove(WebSocketConnection connection)
     {
         // only remove if both Id and the connection instance match. otherwise this connection has already been replaced
-        if (_connections.TryRemove(new KeyValuePair<string, WebSocketConnection>(connection.Id, connection)!))
-        {
-            OnRemove(connection);
-        }
+        if (_connections.TryRemove(new KeyValuePair<string, WebSocketConnection>(connection.Id, connection)!)) OnRemove(connection);
     }
 
     private void OnRemove(WebSocketConnection? connection)
     {
-        
     }
 }

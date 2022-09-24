@@ -1,24 +1,14 @@
-using OK.OcppServer.Infra;
 using Microsoft.AspNetCore.WebSockets;
 using OK.Messages;
-using Proto;
-using Proto.Cluster;
-using Proto.Cluster.Partition;
+using OK.OcppServer.Infra;
 using Proto.Cluster.Seed;
 using Proto.Remote;
-using Proto.Remote.GrpcNet;
+using Proto.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddWebSockets(x =>
-{
-    
-});
-var system = new ActorSystem(new ActorSystemConfig()
-        .WithDeveloperSupervisionLogging(true))
-    .WithRemote(GrpcNetRemoteConfig.BindToLocalhost().WithProtoMessages(MessagesReflection.Descriptor))
-    .WithCluster(ClusterConfig.Setup("MyCluster", new SeedNodeClusterProvider(new SeedNodeClusterProviderOptions(("localhost",8090))), new PartitionIdentityLookup()));
-
-builder.Services.AddSingleton(system);
+builder.Services.AddWebSockets(_ => { });
+var clusterProvider = new SeedNodeClusterProvider(new SeedNodeClusterProviderOptions(("localhost", 8090)));
+builder.Services.AddProtoCluster("MyCluster", remoteConfigFactory: r => r.WithProtoMessages(MessagesReflection.Descriptor), clusterProvider: clusterProvider);
 builder.Services.AddLogging();
 builder.Services.AddSingleton<WebSocketConnectionManager>();
 builder.Services.AddControllers();
@@ -32,14 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-Log.SetLoggerFactory(LoggerFactory.Create(l => l.AddConsole().SetMinimumLevel(LogLevel.Information)));
 
-
-await system.Cluster().StartMemberAsync();
-app.UseWebSockets(new WebSocketOptions()
-{
-    
-});
+app.UseWebSockets(new WebSocketOptions());
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

@@ -17,7 +17,7 @@ public class ChargepointActor : ChargePointBase
         return Task.CompletedTask;
     }
 
-    public override Task HandleFromChargePoint (FromChargepoint request)
+    public override Task HandleFromChargePoint(FromChargepoint request)
     {
         Console.WriteLine("TaDa!! " + request.Payload);
         //
@@ -25,7 +25,6 @@ public class ChargepointActor : ChargePointBase
         // {
         //     Payload = "ocpp...."
         // });
-
         return Task.CompletedTask;
     }
 }
