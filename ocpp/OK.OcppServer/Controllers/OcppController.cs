@@ -7,13 +7,13 @@ namespace OK.OcppServer.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WebSocketController : ControllerBase
+public class OcppController : ControllerBase
 {
-    private readonly ILogger<WebSocketController> _logger;
+    private readonly ILogger<OcppController> _logger;
     private readonly WebSocketConnectionManager _ocppConnectionManager;
     private readonly ActorSystem _system;
 
-    public WebSocketController(WebSocketConnectionManager ocppConnectionManager, ILogger<WebSocketController> logger,
+    public OcppController(WebSocketConnectionManager ocppConnectionManager, ILogger<OcppController> logger,
         ActorSystem system)
     {
         _ocppConnectionManager = ocppConnectionManager;
@@ -21,7 +21,7 @@ public class WebSocketController : ControllerBase
         _system = system;
     }
 
-    [HttpGet("/api/v1/ws/{connectionId}")]
+    [HttpGet("/ocpp/{connectionId}")]
     public async Task<IActionResult> GetAsync(string connectionId)
     {
         if (!HttpContext.WebSockets.IsWebSocketRequest)

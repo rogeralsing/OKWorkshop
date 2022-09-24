@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Proto.Actor" Version="1.0.0-rc2.39"/>
-        <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39"/>
-        <PackageReference Include="Proto.Cluster.Consul" Version="1.0.0-rc2.39"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Proto.Actor" Version="1.0.0-rc2.39" />
+        <PackageReference Include="Proto.Cluster" Version="1.0.0-rc2.39" />
+        <PackageReference Include="Proto.Cluster.Consul" Version="1.0.0-rc2.39" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Messages\Messages.csproj"/>
-        <ProjectReference Include="..\Proto.Utils\Proto.Utils.csproj"/>
+        <ProjectReference Include="..\Messages\Messages.csproj" />
+        <ProjectReference Include="..\Proto.Utils\Proto.Utils.csproj" />
     </ItemGroup>
 
 </Project>
